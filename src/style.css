@@ -665,6 +665,101 @@ summary:focus-visible {
 .channels {
   margin-top: 20px;
 }
+.product-note {
+  font-size: 12px;
+  line-height: 1.65;
+  color: #66746b;
+  margin-top: 8px;
+}
+.workflows {
+  padding-top: 14px;
+}
+.pairing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+.pairing {
+  padding: 24px 25px;
+  display: flex;
+  flex-direction: column;
+}
+.pairing-index {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  color: var(--green);
+}
+.pairing h3 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  margin-top: 9px;
+}
+.pairing-desc {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--muted);
+  margin-top: 9px;
+}
+.pairing-links {
+  display: grid;
+  gap: 8px;
+  margin-top: 18px;
+}
+.workflow-tool {
+  display: flex;
+  align-items: center;
+  gap: 4px 12px;
+  flex-wrap: wrap;
+  min-height: 56px;
+  padding: 10px 12px;
+  border: 1px solid #e2e8da;
+  border-radius: 9px;
+  background: #fafbf6;
+}
+.workflow-tool:hover {
+  border-color: #b9c9b4;
+  background: #f4f7ec;
+}
+.workflow-tool img {
+  width: 28px;
+  height: 28px;
+  flex: none;
+}
+.workflow-tool-copy {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+.workflow-tool-copy b {
+  font-size: 14px;
+}
+.workflow-tool-copy span {
+  font-size: 12px;
+  color: var(--muted);
+}
+.workflow-tool-action {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--green);
+  flex: none;
+}
+.pairing-note {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #66746b;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.workflow-disclaimer {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #66746b;
+  margin-top: 18px;
+}
 .skip {
   position: absolute;
   z-index: 3;
@@ -752,6 +847,9 @@ summary:focus-visible {
   }
   .product-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .pairing-grid {
+    grid-template-columns: 1fr;
   }
   .studio-inner {
     grid-template-columns: 1fr;

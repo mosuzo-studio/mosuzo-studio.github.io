@@ -32,6 +32,9 @@ type Product = {
   mark: string;
   image?: string;
   imageLabel?: Pair;
+  action: "site" | "status" | "releases";
+  download?: { href: string; label: Pair };
+  note?: Pair;
 };
 export const products: Product[] = [
   {
@@ -54,6 +57,11 @@ export const products: Product[] = [
       "For tutorials, bug reports and documentation. Capture a region, a scrolling page or a recording, then mark the details that matter.",
     ],
     status: ["可下载", "Download available"],
+    action: "releases",
+    note: [
+      "Shotera 官网正在恢复中，下载请前往官方 GitHub Releases。",
+      "The Shotera site is still being restored. Download from the official GitHub Releases.",
+    ],
   },
   {
     name: "SnipArc",
@@ -75,6 +83,7 @@ export const products: Product[] = [
       "A Windows screenshot and annotation tool for everyday communication. Take a region capture and send a clearly marked result from your clipboard.",
     ],
     status: ["查看发布状态", "Check release status"],
+    action: "status",
   },
   {
     name: "WindowSift",
@@ -88,6 +97,7 @@ export const products: Product[] = [
       "Trace a window to its process, inspect the window tree and review transient pop-ups.",
     ],
     status: ["独立版本待发布", "Standalone release pending"],
+    action: "status",
   },
   {
     name: "ImagePerch",
@@ -101,6 +111,7 @@ export const products: Product[] = [
       "Move between the overview and the details, trim the edges, then annotate, copy or export.",
     ],
     status: ["独立版本待发布", "Standalone release pending"],
+    action: "status",
   },
   {
     name: "KeySplera",
@@ -117,8 +128,65 @@ export const products: Product[] = [
       "Show keycaps, mouse buttons and click ripples on screen during recordings and live demos.",
     ],
     status: ["v0.1.0 可下载", "v0.1.0 available"],
+    action: "site",
+    download: {
+      href: "https://github.com/mosuzo-studio/KeySplera/releases/download/v0.1.0/KeySplera_0.1.0_x64-setup.exe",
+      label: ["在 GitHub 下载", "Download on GitHub"],
+    },
   },
 ];
+const releaseUrls: Record<string, string> = {
+  shotera: "https://github.com/mosuzo-studio/Shotera/releases",
+};
+export const productHref = (lang: Lang, product: Product) => {
+  if (product.action === "releases" && releaseUrls[product.domain])
+    return releaseUrls[product.domain];
+  if (product.action === "status")
+    return productUrl(lang, product.domain) + "download/";
+  return productUrl(lang, product.domain);
+};
+export const productActionLabel = (product: Product): Pair => {
+  if (product.action === "releases") return ["在 GitHub 下载", "Download on GitHub"];
+  if (product.action === "status") return ["查看发布状态", "Check release status"];
+  return ["访问产品官网", "Visit product site"];
+};
+export const workflows = [
+  {
+    title: ["录制一段教程", "Record a tutorial"],
+    description: [
+      "用 Shotera 录屏，用 KeySplera 让观众看到按键和点击。",
+      "Record with Shotera, then let KeySplera show viewers the keys and clicks.",
+    ],
+    note: [
+      "录制后先在预览里确认覆盖层是否被收录。两件工具分别安装和使用。",
+      "Check the recording preview to confirm the overlay is captured. The two tools are installed and used separately.",
+    ],
+    tools: [
+      { domain: "shotera", role: ["录屏", "Screen recording"] },
+      { domain: "keysplera", role: ["按键与点击提示", "Key and click overlay"] },
+    ],
+  },
+  {
+    title: ["整理一张长图", "Tidy up a long image"],
+    description: [
+      "用 Shotera 截取长截图，再在 ImagePerch 中打开保存的图片，浏览、裁切和整理。",
+      "Capture a long page with Shotera, then open the saved image in ImagePerch to browse, trim and tidy it.",
+    ],
+    note: [
+      "图片以普通图片文件交接；在 ImagePerch 中打开后，按需要裁去多余边缘。",
+      "The hand-off is a regular image file: open it in ImagePerch and trim the edges you do not need.",
+    ],
+    tools: [
+      { domain: "shotera", role: ["长截图", "Scrolling capture"] },
+      { domain: "imageperch", role: ["浏览与裁切", "Browse and trim"] },
+    ],
+  },
+] satisfies {
+  title: Pair;
+  description: Pair;
+  note: Pair;
+  tools: { domain: string; role: Pair }[];
+}[];
 export const descriptions: Record<Page, Pair> = {
   home: [
     "Mosuzo Studio 的 Windows 软件作品集。发现截图、录屏、图片处理、窗口检查与演示工具。",
