@@ -1,0 +1,21 @@
+---
+import Site from "../Site.astro";
+import { pages, type Lang, type Page } from "../data";
+export function getStaticPaths() {
+  const locales: Lang[] = ["zh-cn", "en"];
+  return locales.flatMap((lang) =>
+    pages.map((page) => ({
+      params: {
+        slug:
+          [lang === "en" ? "en" : "", page === "home" ? "" : page]
+            .filter(Boolean)
+            .join("/") || undefined,
+      },
+      props: { lang, page },
+    })),
+  );
+}
+const { lang, page } = Astro.props as { lang: Lang; page: Page };
+---
+
+<Site {lang} {page} />
