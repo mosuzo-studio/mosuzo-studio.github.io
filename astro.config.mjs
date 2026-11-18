@@ -11,18 +11,5 @@ export default defineConfig({
     defaultLocale: "zh-cn",
     routing: { prefixDefaultLocale: false },
   },
-  integrations: [
-    sitemap({
-      serialize(item) {
-        // The canonical domain always serves from /, even when Pages uses a preview subpath.
-        return {
-          ...item,
-          url: item.url.replace(
-            /^https:\/\/mosuzo\.com\/Mosuzo-site(?=\/)/,
-            "https://mosuzo.com",
-          ),
-        };
-      },
-    }),
-  ],
+  integrations: [sitemap()],
 });
