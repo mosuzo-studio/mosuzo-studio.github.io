@@ -38,6 +38,28 @@ type Product = {
 };
 export const products: Product[] = [
   {
+    name: "SnipArc",
+    domain: "sniparc",
+    category: "capture",
+    tone: "green",
+    mark: "◩",
+    image: "sniparc.webp",
+    imageLabel: [
+      "SnipArc 中文程序实拍",
+      "SnipArc app screenshot with Chinese UI",
+    ],
+    tagline: [
+      "截下重点，标清楚，马上分享",
+      "Capture the point, mark it, share it",
+    ],
+    description: [
+      "为日常沟通设计的 Windows 截图与标注工具。从选区到剪贴板，随手把问题讲清楚。",
+      "A Windows screenshot and annotation tool for everyday communication. Take a region capture and send a clearly marked result from your clipboard.",
+    ],
+    status: ["可下载", "Download available"],
+    action: "site",
+  },
+  {
     name: "Shotera",
     domain: "shotera",
     category: "capture",
@@ -57,33 +79,7 @@ export const products: Product[] = [
       "For tutorials, bug reports and documentation. Capture a region, a scrolling page or a recording, then mark the details that matter.",
     ],
     status: ["可下载", "Download available"],
-    action: "releases",
-    note: [
-      "Shotera 官网正在恢复中，下载请前往官方 GitHub Releases。",
-      "The Shotera site is still being restored. Download from the official GitHub Releases.",
-    ],
-  },
-  {
-    name: "SnipArc",
-    domain: "sniparc",
-    category: "capture",
-    tone: "green",
-    mark: "◩",
-    image: "sniparc.webp",
-    imageLabel: [
-      "SnipArc 中文程序实拍",
-      "SnipArc app screenshot with Chinese UI",
-    ],
-    tagline: [
-      "截下重点，标清楚，马上分享",
-      "Capture the point, mark it, share it",
-    ],
-    description: [
-      "为日常沟通设计的 Windows 截图与标注工具。从选区到剪贴板，随手把问题讲清楚。",
-      "A Windows screenshot and annotation tool for everyday communication. Take a region capture and send a clearly marked result from your clipboard.",
-    ],
-    status: ["查看发布状态", "Check release status"],
-    action: "status",
+    action: "site",
   },
   {
     name: "WindowSift",
@@ -96,8 +92,8 @@ export const products: Product[] = [
       "追踪窗口来源，浏览窗口树、检查属性和短暂出现的弹窗。",
       "Trace a window to its process, inspect the window tree and review transient pop-ups.",
     ],
-    status: ["独立版本待发布", "Standalone release pending"],
-    action: "status",
+    status: ["可下载", "Download available"],
+    action: "site",
   },
   {
     name: "ImagePerch",
@@ -110,8 +106,8 @@ export const products: Product[] = [
       "在全貌与细节之间切换，裁去多余内容，再标注、复制或导出。",
       "Move between the overview and the details, trim the edges, then annotate, copy or export.",
     ],
-    status: ["独立版本待发布", "Standalone release pending"],
-    action: "status",
+    status: ["可下载", "Download available"],
+    action: "site",
   },
   {
     name: "KeySplera",
@@ -135,18 +131,12 @@ export const products: Product[] = [
     },
   },
 ];
-const releaseUrls: Record<string, string> = {
-  shotera: "https://github.com/mosuzo-studio/Shotera/releases",
-};
 export const productHref = (lang: Lang, product: Product) => {
-  if (product.action === "releases" && releaseUrls[product.domain])
-    return releaseUrls[product.domain];
   if (product.action === "status")
     return productUrl(lang, product.domain) + "download/";
   return productUrl(lang, product.domain);
 };
 export const productActionLabel = (product: Product): Pair => {
-  if (product.action === "releases") return ["在 GitHub 下载", "Download on GitHub"];
   if (product.action === "status") return ["查看发布状态", "Check release status"];
   return ["访问产品官网", "Visit product site"];
 };
