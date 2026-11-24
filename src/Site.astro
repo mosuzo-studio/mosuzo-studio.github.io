@@ -669,14 +669,15 @@ const values = [
               </article>
               <article class="card service-card">
                 <>
-                  <h3>QQ / {copy("微信", "WeChat")}</h3>
+                  <h3>{copy("QQ 交流群", "QQ Community")}</h3>
                   <p>
                     {copy(
                       "加入 QQ 群参与讨论、了解发布动态和反馈使用问题。",
                       "Join the QQ group for discussions, release updates and feedback.",
                     )}
                   </p>
-                  <a class="text-link" href="https://qm.qq.com/q/iU0JV0Dbva">
+                  <a class="text-link qq-contact" href="https://qm.qq.com/q/ff0xkauRdm" target="_blank" rel="noopener noreferrer">
+                    <img src="/qq.svg" width="22" height="22" alt="" />
                     {copy("加入 QQ 群 418103279", "Join QQ group 418103279")} ↗
                   </a>
                 </>
@@ -792,3 +793,14 @@ const values = [
     </script>
   </body>
 </html>
+
+
+<style>
+  .qq-contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    font-weight: 650;
+  }
+</style>
